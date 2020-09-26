@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import AppAuth
+import GTMAppAuth
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var currentAuthorizationFlow: OIDExternalUserAgentSession?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
