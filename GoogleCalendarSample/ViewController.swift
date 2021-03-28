@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     private var googleCalendarEventList: [GoogleCalendaraEvent] = []
     private var authorization: GTMAppAuthFetcherAuthorization?
     private let clientID = ""
-    private let reverseClientID = ""
+    private let iOSUrlScheme = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,10 +113,15 @@ class ViewController: UIViewController {
     
     typealias showAuthorizationDialogCallBack = ((Error?) -> Void)
     private func showAuthorizationDialog(callBack: @escaping showAuthorizationDialogCallBack) {
-        let scopes = ["https://www.googleapis.com/auth/calendar","https://www.googleapis.com/auth/calendar.readonly","https://www.googleapis.com/auth/calendar.events","https://www.googleapis.com/auth/calendar.events.readonly"]
+        let scopes = [
+            "https://www.googleapis.com/auth/calendar",
+            "https://www.googleapis.com/auth/calendar.readonly",
+            "https://www.googleapis.com/auth/calendar.events",
+            "https://www.googleapis.com/auth/calendar.events.readonly"
+        ]
         
         let configuration = GTMAppAuthFetcherAuthorization.configurationForGoogle()
-        let redirectURL = URL.init(string: reverseClientID + ":/oauthredirect")
+        let redirectURL = URL.init(string: iOSUrlScheme + ":/oauthredirect")
         
         let request = OIDAuthorizationRequest.init(configuration: configuration,
                                                    clientId: clientID,
